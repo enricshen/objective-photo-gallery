@@ -12,7 +12,7 @@ map.on('load', function() {
     map.addSource("photos", {
         type: "geojson",
         // Point to GeoJSON data.
-      
+
         data: "http://brcsvweb03.envbop.net:52463/api/photos",
         cluster: true,
         clusterMaxZoom: 14, // Max zoom to cluster points on
@@ -96,7 +96,11 @@ map.on('load', function() {
 // location of the feature, with description HTML from its properties.
 map.on('click', 'unclustered-point', function (e) {
 var coordinates = e.features[0].geometry.coordinates.slice();
-var description = e.features[0].properties.name;
+var description = "<strong>"+e.features[0].properties.name +"</strong>"+
+                  "<br>Created Date: "+e.features[0].properties.fileCreatedDate +
+                  "<br>Open Objective Photo: "+
+                  "<a href=\""+ e.features[0].properties.url+ "\" target=\"_blank\" title=\"Opens in a new window\"><em>HERE</em></a></p>"
+
 
 // Ensure that if the map is zoomed out such that multiple
 // copies of the feature are visible, the popup appears
