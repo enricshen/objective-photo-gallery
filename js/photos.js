@@ -99,7 +99,8 @@ var coordinates = e.features[0].geometry.coordinates.slice();
 var description = "<strong>"+e.features[0].properties.name +"</strong>"+
                   "<br>Created Date: "+e.features[0].properties.fileCreatedDate +
                   "<br>Open Objective Photo: "+
-                  "<a href=\""+ e.features[0].properties.url+ "\" target=\"_blank\" title=\"Opens in a new window\"><em>HERE</em></a></p>"
+                  "<a href=\""+ e.features[0].properties.url+ "\" target=\"_blank\" title=\"Opens in a new window\"><em>HERE</em></a>" +
+                  "<br>" + "<img src=\"" +e.features[0].properties.url+ "\" width=\”200\” height=\"100\"/>"
 
 
 // Ensure that if the map is zoomed out such that multiple
