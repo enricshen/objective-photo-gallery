@@ -1,7 +1,7 @@
 mapboxgl.accessToken = 'pk.eyJ1IjoibHV2MnUyMDIwIiwiYSI6Ik1xdVpzT2MifQ.-ztdqdV1GdtBuVwaQjyfyQ';
 var map = new mapboxgl.Map({
     container: 'map',
-    style: 'mapbox://styles/mapbox/dark-v10',
+    style: 'mapbox://styles/mapbox/streets-v10',
     center: [176.8, -38.1],
     zoom: 10
 });
@@ -27,25 +27,25 @@ map.on('load', function() {
         paint: {
             // Use step expressions (https://docs.mapbox.com/mapbox-gl-js/style-spec/#expressions-step)
             // with three steps to implement three types of circles:
-            //   * Blue, 20px circles when point count is less than 100
-            //   * Yellow, 30px circles when point count is between 100 and 750
-            //   * Pink, 40px circles when point count is greater than or equal to 750
+            //   * Blue, 20px circles when point count is less than 10
+            //   * Yellow, 30px circles when point count is between 10 and 20
+            //   * Pink, 40px circles when point count is greater than or equal to 20
             "circle-color": [
                 "step",
                 ["get", "point_count"],
-                "#51bbd6",
-                100,
+                "#000000",
+                10,
                 "#f1f075",
-                750,
+                20,
                 "#f28cb1"
             ],
             "circle-radius": [
                 "step",
                 ["get", "point_count"],
                 20,
-                100,
+                10,
                 30,
-                750,
+                20,
                 40
             ]
         }
@@ -59,7 +59,10 @@ map.on('load', function() {
         layout: {
             "text-field": "{point_count_abbreviated}",
             "text-font": ["DIN Offc Pro Medium", "Arial Unicode MS Bold"],
-            "text-size": 12
+            "text-size": 20
+        },
+        paint: {
+            "text-color": "#fcf7f7"
         }
     });
 
@@ -69,9 +72,9 @@ map.on('load', function() {
         source: "photos",
         filter: ["!", ["has", "point_count"]],
         paint: {
-            "circle-color": "#11b4da",
-            "circle-radius": 6,
-            "circle-stroke-width": 1,
+            "circle-color": "#525151",
+            "circle-radius": 7,
+            "circle-stroke-width": 1.2,
             "circle-stroke-color": "#fff"
         }
     });
