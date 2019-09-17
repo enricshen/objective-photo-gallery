@@ -100,7 +100,10 @@ var description = "<strong>"+e.features[0].properties.name +"</strong>"+
                   "<br>Open Objective Photo: " + "<a href=\""+ e.features[0].properties.url+ "\" target=\"_blank\" title=\"Opens in a new window\"><em>HERE</em></a>" +
                   "<br>" + "<img src=\"" +e.features[0].properties.url+ "\" width=\”200\” height=\"100\"/>" +
                   "<br><strong>Created Date: </strong>"+e.features[0].properties.fileCreatedDate +
+<<<<<<< HEAD
                   "<br><strong>Uploaded by: </strong>"+e.features[0].properties.owner
+=======
+>>>>>>> origin/version1
 
 
 // Ensure that if the map is zoomed out such that multiple
