@@ -100,11 +100,10 @@ map.on('load', function() {
 map.on('click', 'unclustered-point', function (e) {
 var coordinates = e.features[0].geometry.coordinates.slice();
 var description = "<strong>"+e.features[0].properties.name +"</strong>"+
-                  "<br>Open Objective Photo: " + "<a href=\""+ e.features[0].properties.url+ "\" target=\"_blank\" title=\"Opens in a new window\"><em>HERE</em></a>" +
-                  "<br>" + "<img src=\"" +e.features[0].properties.url+ "\" width=\”200\” height=\"100\"/>" +
-                  "<br><strong>Created Date: </strong>"+e.features[0].properties.fileCreatedDate +
+                  "<br>Open Objective Photo Below:" +
+                  "<br><a href=\""+ e.features[0].properties.url+ "\" target=\"_blank\" title=\"Opens in a new window\">" + "<img src=\"" +e.features[0].properties.url+ "\" width=\”220\” height=\"110\"/>" + "</a>" +
+                  "<br><strong>Uploaded date: </strong>"+e.features[0].properties.fileCreatedDate +
                   "<br><strong>Uploaded by: </strong>"+e.features[0].properties.owner
-
 
 // Ensure that if the map is zoomed out such that multiple
 // copies of the feature are visible, the popup appears
