@@ -33,11 +33,11 @@ map.on('load', function() {
             "circle-color": [
                 "step",
                 ["get", "point_count"],
-                "#000000",
+                "#272838",
                 10,
-                "#f1f075",
+                "#CC9751",
                 20,
-                "#f28cb1"
+                "#8E443D"
             ],
             "circle-radius": [
                 "step",
@@ -102,7 +102,7 @@ var coordinates = e.features[0].geometry.coordinates.slice();
 var description = "<strong>"+e.features[0].properties.name +"</strong>"+
                   "<br>Open Objective Photo Below:" +
                   "<br><a href=\""+ e.features[0].properties.url+ "\" target=\"_blank\" title=\"Opens in a new window\">" + "<img src=\"" +e.features[0].properties.url+ "\" width=\”220\” height=\"110\"/>" + "</a>" +
-                  "<br><strong>Uploaded date: </strong>"+e.features[0].properties.fileCreatedDate +
+                  "<br><strong>Date taken: </strong>"+e.features[0].properties.fileCreatedDate +
                   "<br><strong>Uploaded by: </strong>"+e.features[0].properties.owner
 
 // Ensure that if the map is zoomed out such that multiple
