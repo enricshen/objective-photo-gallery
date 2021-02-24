@@ -1,9 +1,9 @@
 mapboxgl.accessToken = 'pk.eyJ1IjoibHV2MnUyMDIwIiwiYSI6Ik1xdVpzT2MifQ.-ztdqdV1GdtBuVwaQjyfyQ';
 var map = new mapboxgl.Map({
     container: 'map',
-    style: 'mapbox://styles/mapbox/dark-v10',
-    center: [176.8, -38.1],
-    zoom: 10
+    style: 'mapbox://styles/mapbox/streets-v10',
+    center: [176.8, -38.0],
+    zoom: 9
 });
 
 map.on('load', function() {
@@ -13,7 +13,7 @@ map.on('load', function() {
         type: "geojson",
         // Point to GeoJSON data.
 
-        data: "http://brcsvweb03.envbop.net:52463/api/photos",
+        data: "http://edmsphotostest.envbop.net/api/photos",
         cluster: true,
         clusterMaxZoom: 14, // Max zoom to cluster points on
         clusterRadius: 50 // Radius of each cluster when clustering points (defaults to 50)
@@ -27,25 +27,25 @@ map.on('load', function() {
         paint: {
             // Use step expressions (https://docs.mapbox.com/mapbox-gl-js/style-spec/#expressions-step)
             // with three steps to implement three types of circles:
-            //   * Blue, 20px circles when point count is less than 100
-            //   * Yellow, 30px circles when point count is between 100 and 750
-            //   * Pink, 40px circles when point count is greater than or equal to 750
+            //   * black, 20px circles when point count is less than 10
+            //   * orange, 30px circles when point count is between 10 and 20
+            //   * dark red, 40px circles when point count is greater than or equal to 20
             "circle-color": [
                 "step",
                 ["get", "point_count"],
-                "#51bbd6",
-                100,
-                "#f1f075",
-                750,
-                "#f28cb1"
+                "#272838",
+                10,
+                "#CC9751",
+                20,
+                "#8E443D"
             ],
             "circle-radius": [
                 "step",
                 ["get", "point_count"],
                 20,
-                100,
+                10,
                 30,
-                750,
+                20,
                 40
             ]
         }
@@ -59,7 +59,10 @@ map.on('load', function() {
         layout: {
             "text-field": "{point_count_abbreviated}",
             "text-font": ["DIN Offc Pro Medium", "Arial Unicode MS Bold"],
-            "text-size": 12
+            "text-size": 20
+        },
+        paint: {
+            "text-color": "#fcf7f7"
         }
     });
 
@@ -69,9 +72,9 @@ map.on('load', function() {
         source: "photos",
         filter: ["!", ["has", "point_count"]],
         paint: {
-            "circle-color": "#11b4da",
-            "circle-radius": 6,
-            "circle-stroke-width": 1,
+            "circle-color": "#525151",
+            "circle-radius": 7,
+            "circle-stroke-width": 1.2,
             "circle-stroke-color": "#fff"
         }
     });
@@ -97,10 +100,10 @@ map.on('load', function() {
 map.on('click', 'unclustered-point', function (e) {
 var coordinates = e.features[0].geometry.coordinates.slice();
 var description = "<strong>"+e.features[0].properties.name +"</strong>"+
-                  "<br>Open Objective Photo: " + "<a href=\""+ e.features[0].properties.url+ "\" target=\"_blank\" title=\"Opens in a new window\"><em>HERE</em></a>" +
-                  "<br>" + "<img src=\"" +e.features[0].properties.url+ "\" width=\”200\” height=\"100\"/>" +
-                  "<br><strong>Created Date: </strong>"+e.features[0].properties.fileCreatedDate +
-
+                  "<br>Open Objective Photo Below:" +
+                  "<br><a href=\""+ e.features[0].properties.url+ "\" target=\"_blank\" title=\"Opens in a new window\">" + "<img src=\"" +e.features[0].properties.url+ "\" width=\”220\” height=\"110\"/>" + "</a>" +
+                  "<br><strong>Date taken: </strong>"+e.features[0].properties.fileCreatedDate +
+                  "<br><strong>Uploaded by: </strong>"+e.features[0].properties.owner
 
 // Ensure that if the map is zoomed out such that multiple
 // copies of the feature are visible, the popup appears
@@ -109,10 +112,13 @@ while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
 coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
 }
 
-new mapboxgl.Popup()
-.setLngLat(coordinates)
-.setHTML(description)
-.addTo(map);
+// call to set the image
+setImage(e.features[0].properties);
+
+//new mapboxgl.Popup()
+//.setLngLat(coordinates)
+//.setHTML(description)
+//.addTo(map);
 });
 
 //Control mouse movement
