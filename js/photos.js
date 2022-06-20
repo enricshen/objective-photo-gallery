@@ -1,4 +1,4 @@
-mapboxgl.accessToken = 'pk.eyJ1IjoibHV2MnUyMDIwIiwiYSI6Ik1xdVpzT2MifQ.-ztdqdV1GdtBuVwaQjyfyQ';
+mapboxgl.accessToken = 'pk.eyJ1IjoiZW5yaWNzaGVuIiwiYSI6ImNrdmluMzh2cjBkaGYyb3BrbGRkdGlmbDMifQ.zxH5mH0AlRmPPjSRQAbMYg';
 var map = new mapboxgl.Map({
     container: 'map',
     style: 'mapbox://styles/mapbox/streets-v10',
@@ -13,7 +13,7 @@ map.on('load', function() {
         type: "geojson",
         // Point to GeoJSON data.
 
-        data: "http://edmsphotostest.envbop.net/api/photos",
+        data: "https://raw.githubusercontent.com/enricshen/travel-photos/master/data/photos.geojson",
         cluster: true,
         clusterMaxZoom: 14, // Max zoom to cluster points on
         clusterRadius: 50 // Radius of each cluster when clustering points (defaults to 50)

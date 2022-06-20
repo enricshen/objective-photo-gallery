@@ -75,10 +75,10 @@ function setImage(imgProperties){
 	
 	// set all the properties
 	$("#imageTitle").text(imgProperties.name);
-	$("#imgAnchor").attr("href", imgProperties.url);
-	$("#image").attr("src", imgProperties.url);
-	$("#imageDateTaken").html("<strong>Date taken: </strong>" + imgProperties.fileCreatedDate);
-	$("#imageUploadedBy").html("<strong>Uploaded by: </strong>" + imgProperties.owner);
+	$("#imgAnchor").attr("href", imgProperties.image);
+	$("#image").attr("src", imgProperties.thumbnail);
+	$("#imageDateTaken").html("<strong>Date taken: </strong>" + imgProperties.date);
+	$("#imageUploadedBy").html("<strong>Location: </strong>" + imgProperties.location + ", " + imgProperties.country);
 }
 
 function initLeftPanel() {
