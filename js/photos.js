@@ -1,4 +1,4 @@
-mapboxgl.accessToken = 'pk.eyJ1IjoibHV2MnUyMDIwIiwiYSI6Ik1xdVpzT2MifQ.-ztdqdV1GdtBuVwaQjyfyQ';
+mapboxgl.accessToken = 'pk.eyJ1IjoiZW5yaWNzaGVuIiwiYSI6ImNrdmluMzh2cjBkaGYyb3BrbGRkdGlmbDMifQ.zxH5mH0AlRmPPjSRQAbMYg';
 var map = new mapboxgl.Map({
     container: 'map',
     style: 'mapbox://styles/mapbox/streets-v10',
@@ -13,7 +13,7 @@ map.on('load', function() {
         type: "geojson",
         // Point to GeoJSON data.
 
-        data: "http://brcsvweb03.envbop.net:52463/api/photos",
+        data: "https://raw.githubusercontent.com/enricshen/travel-photos/master/data/photos.geojson",
         cluster: true,
         clusterMaxZoom: 14, // Max zoom to cluster points on
         clusterRadius: 50 // Radius of each cluster when clustering points (defaults to 50)
@@ -112,10 +112,13 @@ while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
 coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
 }
 
-new mapboxgl.Popup()
-.setLngLat(coordinates)
-.setHTML(description)
-.addTo(map);
+// call to set the image
+setImage(e.features[0].properties);
+
+//new mapboxgl.Popup()
+//.setLngLat(coordinates)
+//.setHTML(description)
+//.addTo(map);
 });
 
 //Control mouse movement
